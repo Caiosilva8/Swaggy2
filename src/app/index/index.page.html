@@ -27,39 +27,12 @@
     </ion-fab-button>
   </ion-fab>
 
-  <!-- <ion-list>
-      <ion-item>
-        <ion-label>Pokémon Yellow</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Mega Man X</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>The Legend of Zelda</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Pac-Man</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Super Mario World</ion-label>
-      </ion-item>
-    </ion-list>
-
-  <ion-item>
-    <ion-label>
-      Bem vindo a nossa loja!
-    </ion-label>
-    <ion-icon name="information-circle" slot="end"></ion-icon>
-  </ion-item>
--->
-
   <ion-grid>
     <ion-row>
         <ion-slides pager="true" [options]="slideOpts1">
             <ion-slide>
           <ion-tab-button tab="schedule" (click)="att('Jaqueta')">
             <img src="../../assets/img/hooded-jacket.png" width="100px" height="100px" />
-            <!--<ion-icon name="calendar"></ion-icon>-->
             <ion-label>Casacos</ion-label>
           </ion-tab-button>
           </ion-slide>
@@ -91,25 +64,6 @@
     </ion-row>
   </ion-grid>
 
-  <ion-item class="select">
-    <ion-label>
-      <ion-tabs>
-        <ion-tab-bar slot="bottom">
-
-          <ion-tab-button tab="speakers">
-            <ion-icon name="contacts"></ion-icon>
-            <ion-label>Calça</ion-label>
-          </ion-tab-button>
-          <ion-tab-button tab="map">
-            <ion-icon name="map"></ion-icon>
-            <ion-label>Acessorios</ion-label>
-          </ion-tab-button>
-        </ion-tab-bar>
-      </ion-tabs>
-    </ion-label>
-
-  </ion-item>
-
   <ion-card *ngFor="let produto of listaDeProdutos">
     <ion-card-header>
       <img src="{{produto?.foto}}" class="aa">
@@ -125,13 +79,13 @@
       <ion-icon name="share"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
-      <ion-fab-button>
+      <ion-fab-button (click)="facebook()">
         <ion-icon name="logo-facebook"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button>
+      <ion-fab-button (click)="instagram()">
         <ion-icon name="logo-instagram"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button>
+      <ion-fab-button (click)="twitter()">
         <ion-icon name="logo-twitter"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>

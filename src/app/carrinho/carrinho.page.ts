@@ -3,6 +3,7 @@ import { StorageService } from './../service/storage.service';
 import { Produto } from './../model/produto';
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrinho',
@@ -14,7 +15,8 @@ export class CarrinhoPage implements OnInit {
     pedido : Pedido = new Pedido();
     total : number = 0;
 
-  constructor(public storageServ : StorageService) {
+  constructor(public storageServ : StorageService,
+              public router : Router) {
   
    }
 
@@ -39,5 +41,9 @@ export class CarrinhoPage implements OnInit {
   removeCar(produto : Produto){
     this.storageServ.setRemoveCart(produto);
     this.pedido = this.storageServ.getCart();
+  }
+
+  index(){
+    this.router.navigate(['index']);
   }
 }

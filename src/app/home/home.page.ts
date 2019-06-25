@@ -56,4 +56,13 @@ export class HomePage {
     })
   }
 
+  facebook(){
+    window.open("https://pt-br.facebook.com/",'_system', 'location=yes');
+  }
+  instagram(){
+    window.open("https://www.instagram.com/?hl=pt-br",'_system', 'location=yes');
+  }
+  twitter(){
+    window.open("https://twitter.com/login?lang=pt",'_system', 'location=yes');
+  }
 }

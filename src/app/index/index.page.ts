@@ -55,6 +55,19 @@ export class IndexPage implements OnInit {
     this.router.navigate(['carrinho']);
   }
 
+
+  facebook(){
+    window.open("https://pt-br.facebook.com/",'_system', 'location=yes');
+  }
+  
+  instagram(){
+    window.open("https://www.instagram.com/?hl=pt-br",'_system', 'location=yes');
+  }
+  twitter(){
+    window.open("https://twitter.com/login?lang=pt",'_system', 'location=yes');
+    
+  }
+  
   addCarrinho(produto : Produto){
     this.pedido = this.storageServ.getCart();
     let add = true;
