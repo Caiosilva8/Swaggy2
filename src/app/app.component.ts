@@ -19,11 +19,11 @@ export class AppComponent {
     },{
       title: 'Cadastrar Produto',
       url: '/cadastro-de-produtos',
-      icon: 'contacts'
+      icon: 'folder-open'
     },{
       title: 'Lista de Produto',
       url: '/lista-de-produtos',
-      icon: 'body'
+      icon: 'clipboard'
     },{
       title: 'Logoff',
       url: '/logoff',
@@ -32,6 +32,10 @@ export class AppComponent {
       title: 'Carrinho',
       url: '/carrinho',
       icon: 'cart'
+    },{
+      title: 'Visualizar Perfil',
+      url: '/perfil',
+      icon: 'contact'
     }
   ];
 

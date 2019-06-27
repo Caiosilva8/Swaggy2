@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: 'lista-de-produtos', loadChildren: './lista-de-produtos/lista-de-produtos.module#ListaDeProdutosPageModule' },
   { path: 'carrinho', loadChildren: './carrinho/carrinho.module#CarrinhoPageModule' },  { path: 'cliente-view', loadChildren: './cliente-view/cliente-view.module#ClienteViewPageModule' },
   { path: 'produto-view', loadChildren: './produto-view/produto-view.module#ProdutoViewPageModule' },
-  { path: 'categoria', loadChildren: './categoria/categoria.module#CategoriaPageModule' }
+  { path: 'categoria', loadChildren: './categoria/categoria.module#CategoriaPageModule' },
+  { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilPageModule' }
 
 
 
