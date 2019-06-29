@@ -1,3 +1,4 @@
+import { Item } from './../model/item';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonContent, LoadingController } from '@ionic/angular';
@@ -6,7 +7,6 @@ import * as firebase from 'firebase';
 import { StorageService } from '../service/storage.service';
 import { Pedido } from '../model/pedido';
 import { FormGroup } from '@angular/forms';
-import { Item } from '../model/item';
 
 @Component({
   selector: 'app-index',
@@ -24,10 +24,14 @@ export class IndexPage implements OnInit {
 
   constructor(public loadingController: LoadingController,
               public storageServ : StorageService,
-              public router : Router) { }
+              public router : Router) {
+
+                
+
+              }
 
   ngOnInit() {
-    this.getList();
+   this.getList();
   }
 
 
@@ -69,6 +73,7 @@ export class IndexPage implements OnInit {
   }
   
   addCarrinho(produto : Produto){
+    /*
     this.pedido = this.storageServ.getCart();
     let add = true;
 
@@ -90,9 +95,11 @@ export class IndexPage implements OnInit {
     if(add==true) this.pedido.itens.push(i);
 
     this.storageServ.setCart(this.pedido);
+    */
   }
 
   getList() {
+    /*
     var ref = firebase.firestore().collection("produto");
     ref.get().then(query => {
       query.forEach(doc => {
@@ -109,6 +116,6 @@ export class IndexPage implements OnInit {
       });
       console.log(this.listaDeProdutos)
       this.loadingController.dismiss();
-    });
+    });*/
   };
 }
