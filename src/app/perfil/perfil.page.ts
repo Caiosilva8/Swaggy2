@@ -1,3 +1,4 @@
+import { Camera } from '@ionic-native/camera';
 import { Perfil } from './../model/perfil';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,9 @@ export class PerfilPage implements OnInit {
   settings = {timestampsInSnapshots: true};
 
   constructor(public firebaseauth : AngularFireAuth,
-              public router : Router) {
+              public router : Router,
+              public fire : AngularFireAuth,
+              public camera : Camera) {
     
     this.firebaseauth.authState.subscribe(obj=>{
       
@@ -36,6 +39,14 @@ export class PerfilPage implements OnInit {
 
   edt(){
     this.router.navigate(['perfil-view']);
+  }
+
+  logoff(){
+    this.fire.auth.signOut().then(()=>{
+      this.router.navigate(['/home']);
+    }).catch(()=>{
+      this.router.navigate(['/list']);
+    })
   }
 
   ngOnInit() {

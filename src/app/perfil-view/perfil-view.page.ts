@@ -88,4 +88,8 @@ export class PerfilViewPage implements OnInit {
     });
     await loading.present();
   }
+
+  cancelar(){
+    this.router.navigate(['/perfil']);
+  }
 }
