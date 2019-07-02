@@ -73,7 +73,7 @@ export class IndexPage implements OnInit {
   }
   
   addCarrinho(produto : Produto){
-    /*
+    
     this.pedido = this.storageServ.getCart();
     let add = true;
 
@@ -84,6 +84,14 @@ export class IndexPage implements OnInit {
     if(this.pedido==null){ // Caso pedido esteja vazio
       this.pedido = new Pedido(); //cria umm novo pedido  
       this.pedido.itens = []; //cria uma lista de itens
+    } else {
+      this.pedido.itens.forEach(p =>{
+        if(p.produto !== undefined){
+          if(p.produto.id == produto.id){
+            add = false;
+          }
+        }
+      });
     }
 
     this.pedido.itens.forEach(p => {
@@ -95,11 +103,11 @@ export class IndexPage implements OnInit {
     if(add==true) this.pedido.itens.push(i);
 
     this.storageServ.setCart(this.pedido);
-    */
+    
   }
 
   getList() {
-    /*
+    
     var ref = firebase.firestore().collection("produto");
     ref.get().then(query => {
       query.forEach(doc => {
@@ -116,6 +124,6 @@ export class IndexPage implements OnInit {
       });
       console.log(this.listaDeProdutos)
       this.loadingController.dismiss();
-    });*/
+    });
   };
 }
