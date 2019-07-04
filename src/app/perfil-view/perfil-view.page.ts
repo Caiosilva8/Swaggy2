@@ -18,6 +18,7 @@ export class PerfilViewPage implements OnInit {
   firestore = firebase.firestore();
   settings = { timestampsInSnapshots: true };
   formGroup : FormGroup;
+  imagem : any;
 
   constructor(public formBuilder : FormBuilder,
               public toastController : ToastController,
@@ -25,7 +26,7 @@ export class PerfilViewPage implements OnInit {
               public loadingController : LoadingController,
               public router : Router) {
 
-                this.firebaseauth.authState.subscribe(obj=>{
+                  this.firebaseauth.authState.subscribe(obj=>{
                   this.idUsuario = this.firebaseauth.auth.currentUser.uid;
 
                   let ref = this.firestore.collection('perfil/').doc(this.idUsuario)
@@ -56,6 +57,7 @@ export class PerfilViewPage implements OnInit {
    }
 
   ngOnInit() {
+    this.downloadFoto();
   }
   
 
@@ -91,5 +93,24 @@ export class PerfilViewPage implements OnInit {
 
   cancelar(){
     this.router.navigate(['/perfil']);
+  }
+
+  enviaArquivo(event) {
+    let imagem = event.srcElement.files[0];
+    let ref = firebase.storage().ref()
+      .child(`perfil/${this.idUsuario}.jpg`);
+
+      ref.put(imagem).then(url=> {
+        this.downloadFoto();
+      })
+  }
+
+  downloadFoto(){
+    let ref = firebase.storage().ref()
+      .child(`perfil/${this.idUsuario}.jpg`);
+
+      ref.getDownloadURL().then(url=>{
+        this.imagem = url;
+      })
   }
 }

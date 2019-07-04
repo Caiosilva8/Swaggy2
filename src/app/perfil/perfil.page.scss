@@ -3,9 +3,11 @@
     width: 100px;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 50%;
 }
 ion-card{
     text-align: center;
+    background-image: src("../../assets/img/usuario.png");
 }
 ion-progress-bar{
     margin-top: 10px;

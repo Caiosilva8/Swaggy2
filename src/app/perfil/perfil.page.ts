@@ -15,7 +15,7 @@ export class PerfilPage implements OnInit {
 
   idUsuario : string;
   perfil : Perfil = new Perfil();
-  picture : string;
+  picture : string = "../../assets/img/usuario.png";
   cameraOn : boolean = false;
 
   firestore = firebase.firestore();
@@ -28,6 +28,8 @@ export class PerfilPage implements OnInit {
     this.firebaseauth.authState.subscribe(obj=>{
       
       this.idUsuario = this.firebaseauth.auth.currentUser.uid;
+
+      this.downloadFoto();
 
       let ref = this.firestore.collection('perfil/').doc(this.idUsuario)
       ref.get().then(doc=> {
@@ -54,6 +56,7 @@ export class PerfilPage implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
 
@@ -74,5 +77,14 @@ export class PerfilPage implements OnInit {
     // Handle error
    });
 
+  }
+
+  downloadFoto(){
+    let ref = firebase.storage().ref()
+      .child(`perfil/${this.idUsuario}.jpg`);
+
+      ref.getDownloadURL().then(url=>{
+        this.picture = url;
+      })
   }
 }
