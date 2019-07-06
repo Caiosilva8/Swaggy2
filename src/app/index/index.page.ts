@@ -7,6 +7,7 @@ import * as firebase from 'firebase';
 import { StorageService } from '../service/storage.service';
 import { Pedido } from '../model/pedido';
 import { FormGroup } from '@angular/forms';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-index',
@@ -24,14 +25,23 @@ export class IndexPage implements OnInit {
 
   constructor(public loadingController: LoadingController,
               public storageServ : StorageService,
-              public router : Router) {
+              public router : Router,
+              public firebaseauth : AngularFireAuth) {
 
-                
+                this.firebaseauth.authState.subscribe(obj=>{
+
+                  this.id = this.firebaseauth.auth.currentUser.uid;
+                  this.verificarPerfil();
+
+
+
+                });
 
               }
 
   ngOnInit() {
    this.getList();
+   
   }
 
 
@@ -126,4 +136,33 @@ export class IndexPage implements OnInit {
       this.loadingController.dismiss();
     });
   };
+
+
+  verificarPerfil() { 
+
+    var ref = firebase.firestore().collection("perfil");
+    ref.doc(this.id).get().then(doc => {
+      if(!doc.exists)
+        this.gerarPerfil();
+    }).catch(err=>{
+      this.gerarPerfil();
+    });
+      
+  };
+
+
+  gerarPerfil(){
+
+    let doc = { 
+      nome : '',
+      cidade : '',
+      estado : '',
+      pontos : null
+    };
+    
+    var ref = firebase.firestore().collection("perfil").doc(this.id).set(doc);
+  }
+
+
+
 }

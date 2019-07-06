@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class PerfilViewPage implements OnInit {
 
   idUsuario : string;
+  usuarioEmail : string;
   perfil : Perfil = new Perfil();
   firestore = firebase.firestore();
   settings = { timestampsInSnapshots: true };
@@ -27,8 +28,11 @@ export class PerfilViewPage implements OnInit {
               public router : Router) {
 
                   this.firebaseauth.authState.subscribe(obj=>{
-                  this.idUsuario = this.firebaseauth.auth.currentUser.uid;
 
+                  this.idUsuario = this.firebaseauth.auth.currentUser.uid;
+                  this.usuarioEmail = this.firebaseauth.auth.currentUser.email;
+                  console.log(this.idUsuario);
+                  console.log(this.usuarioEmail);
                   let ref = this.firestore.collection('perfil/').doc(this.idUsuario)
                   ref.get().then(doc=> {
                       this.perfil.setDados(doc.data());
@@ -36,8 +40,10 @@ export class PerfilViewPage implements OnInit {
                       this.formGroup.controls['nome'].setValue(this.perfil.nome);
                       this.formGroup.controls['cidade'].setValue(this.perfil.cidade);
                       this.formGroup.controls['estado'].setValue(this.perfil.estado);
+                      //this.formGroup.controls['email'].setValue(this.perfil.email);
+
                   });
-            
+                    
                 });
 
                 this.form();
