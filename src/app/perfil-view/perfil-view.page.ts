@@ -31,8 +31,7 @@ export class PerfilViewPage implements OnInit {
 
                   this.idUsuario = this.firebaseauth.auth.currentUser.uid;
                   this.usuarioEmail = this.firebaseauth.auth.currentUser.email;
-                  console.log(this.idUsuario);
-                  console.log(this.usuarioEmail);
+
                   let ref = this.firestore.collection('perfil/').doc(this.idUsuario)
                   ref.get().then(doc=> {
                       this.perfil.setDados(doc.data());

@@ -16,37 +16,39 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class IndexPage implements OnInit {
 
+  @ViewChild("textoBusca") textoBusca;
+
   listaDeProdutos: Produto[] = [];
   id: string;
 
 
-  pedido : Pedido = new Pedido();
-  formGroup : FormGroup;
+  pedido: Pedido = new Pedido();
+  formGroup: FormGroup;
 
   constructor(public loadingController: LoadingController,
-              public storageServ : StorageService,
-              public router : Router,
-              public firebaseauth : AngularFireAuth) {
+    public storageServ: StorageService,
+    public router: Router,
+    public firebaseauth: AngularFireAuth) {
 
-                this.firebaseauth.authState.subscribe(obj=>{
+    this.firebaseauth.authState.subscribe(obj => {
 
-                  this.id = this.firebaseauth.auth.currentUser.uid;
-                  this.verificarPerfil();
+      this.id = this.firebaseauth.auth.currentUser.uid;
+      this.verificarPerfil();
 
 
 
-                });
+    });
 
-              }
+  }
 
   ngOnInit() {
-   this.getList();
-   
+    this.getList();
+
   }
 
 
-  att(nomeCategoria : string){
-    this.router.navigate(['/categoria', {'categoria' : nomeCategoria}]);
+  att(nomeCategoria: string) {
+    this.router.navigate(['/categoria', { 'categoria': nomeCategoria }]);
   }
 
   slideOpts = {
@@ -65,25 +67,25 @@ export class IndexPage implements OnInit {
     slidesPerView: 3,
   }
 
-  carrinho(){
+  carrinho() {
     this.router.navigate(['carrinho']);
   }
 
 
-  facebook(){
-    window.open("https://pt-br.facebook.com/",'_system', 'location=yes');
+  facebook() {
+    window.open("https://pt-br.facebook.com/", '_system', 'location=yes');
   }
-  
-  instagram(){
-    window.open("https://www.instagram.com/?hl=pt-br",'_system', 'location=yes');
+
+  instagram() {
+    window.open("https://www.instagram.com/?hl=pt-br", '_system', 'location=yes');
   }
-  twitter(){
-    window.open("https://twitter.com/login?lang=pt",'_system', 'location=yes');
-    
+  twitter() {
+    window.open("https://twitter.com/login?lang=pt", '_system', 'location=yes');
+
   }
-  
-  addCarrinho(produto : Produto){
-    
+
+  addCarrinho(produto: Produto) {
+
     this.pedido = this.storageServ.getCart();
     let add = true;
 
@@ -91,13 +93,13 @@ export class IndexPage implements OnInit {
     i.produto = produto;
     i.quantidade = 1;
 
-    if(this.pedido==null){ // Caso pedido esteja vazio
+    if (this.pedido == null) { // Caso pedido esteja vazio
       this.pedido = new Pedido(); //cria umm novo pedido  
       this.pedido.itens = []; //cria uma lista de itens
     } else {
-      this.pedido.itens.forEach(p =>{
-        if(p.produto !== undefined){
-          if(p.produto.id == produto.id){
+      this.pedido.itens.forEach(p => {
+        if (p.produto !== undefined) {
+          if (p.produto.id == produto.id) {
             add = false;
           }
         }
@@ -105,19 +107,19 @@ export class IndexPage implements OnInit {
     }
 
     this.pedido.itens.forEach(p => {
-      if(p.produto.id == produto.id){
+      if (p.produto.id == produto.id) {
         add = false;
       }
     });
 
-    if(add==true) this.pedido.itens.push(i);
+    if (add == true) this.pedido.itens.push(i);
 
     this.storageServ.setCart(this.pedido);
-    
+
   }
 
   getList() {
-    
+
     var ref = firebase.firestore().collection("produto");
     ref.get().then(query => {
       query.forEach(doc => {
@@ -138,31 +140,56 @@ export class IndexPage implements OnInit {
   };
 
 
-  verificarPerfil() { 
+  verificarPerfil() {
 
     var ref = firebase.firestore().collection("perfil");
     ref.doc(this.id).get().then(doc => {
-      if(!doc.exists)
+      if (!doc.exists)
         this.gerarPerfil();
-    }).catch(err=>{
+    }).catch(err => {
       this.gerarPerfil();
     });
-      
+
   };
 
 
-  gerarPerfil(){
+  gerarPerfil() {
 
-    let doc = { 
-      nome : '',
-      cidade : '',
-      estado : '',
-      pontos : null
+    let doc = {
+      nome: '',
+      cidade: '',
+      estado: '',
+      pontos: null
     };
-    
+
     var ref = firebase.firestore().collection("perfil").doc(this.id).set(doc);
   }
 
+  perfil() {
+    this.router.navigate(['perfil']);
+  }
 
+  busca() {
+    console.log(this.textoBusca.value)
+
+    this.listaDeProdutos = [];
+    var ref = firebase.firestore().collection("produto");
+    ref.orderBy('nomeProduto').startAfter(this.textoBusca.value).endAt(this.textoBusca.value + '\uf8ff').get().then(doc => {
+      if (doc.size > 0) {
+        doc.forEach(doc => {
+          let r = new Produto();
+          r.setDados(doc.data());
+          r.id = doc.id;
+
+          let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
+            r.foto = url;
+            this.listaDeProdutos.push(r);
+          })
+        })
+      } else {
+        console.log("No such document!");
+      }
+    })
+  }
 
 }

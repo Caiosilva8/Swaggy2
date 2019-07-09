@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class PerfilPage implements OnInit {
 
   idUsuario : string;
+  usuarioEmail : string;
   perfil : Perfil = new Perfil();
   picture : string = "../../assets/img/usuario.png";
   cameraOn : boolean = false;
@@ -28,7 +29,7 @@ export class PerfilPage implements OnInit {
     this.firebaseauth.authState.subscribe(obj=>{
       
       this.idUsuario = this.firebaseauth.auth.currentUser.uid;
-
+      this.usuarioEmail = this.firebaseauth.auth.currentUser.email;
       this.downloadFoto();
 
       let ref = this.firestore.collection('perfil/').doc(this.idUsuario)

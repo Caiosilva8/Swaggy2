@@ -1,19 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon name="menu" size="large" id="menu"></ion-icon>
-    <ion-icon name="cart" size="large" id="market" (click)="carrinho()"></ion-icon>
-    <img src="../../assets/img/Logo.png" height="100" width="100" class="icon">
+    <ion-buttons slot="start">
+      <ion-menu-button name="menu" size="large" id="menu" (click)="menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-icon name="contact" size="large" id="market" (click)="perfil()"></ion-icon>
+    <img src="../../assets/img/Logo.png" height="60" width="60" class="icon">
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-row>
+    <ion-searchbar #textoBusca animated placeholder="Procurar" (ionChange)="busca()"></ion-searchbar>
+  </ion-row>
+
   <ion-slides pager="true" autoplay="true" [options]="slideOpts">
     <ion-slide>
-      <ion-img src="../../assets/img/f.jpg"></ion-img>
+      <ion-img src="../../assets/img/eg.jpg"></ion-img>
     </ion-slide>
     <ion-slide>
-      <ion-img src="../../assets/img/e.jpg"></ion-img>
+      <ion-img src="../../assets/img/b.jpg"></ion-img>
     </ion-slide>
     <ion-slide>
       <ion-img src="../../assets/img/d.jpg"></ion-img>
@@ -29,40 +35,48 @@
 
   <ion-grid>
     <ion-row>
-        <ion-slides pager="true" [options]="slideOpts1">
-            <ion-slide>
-          <ion-tab-button tab="schedule" (click)="att('Jaqueta')">
-            <img src="../../assets/img/hooded-jacket.png" width="100px" height="100px" />
+      <ion-slides pager="true" [options]="slideOpts1">
+        <ion-slide >
+          <ion-tab-button tab="schedule" (click)="att('Jaqueta')" class="cat">
+            <img src="../../assets/img/hooded-jacket.png" class="cat" />
             <ion-label>Casacos</ion-label>
           </ion-tab-button>
-          </ion-slide>
-          <ion-slide>
-          <ion-tab-button tab="speakers"  (click)="att('Tenis')">
-            <img src="../../assets/img/shoe2.png" width="100px" height="100px" />
+        </ion-slide>
+        <ion-slide>
+          <ion-tab-button tab="speakers" (click)="att('Tenis')">
+            <img src="../../assets/img/shoe2.png" class="cat" />
             <ion-label>Tênis</ion-label>
-            </ion-tab-button>
-          </ion-slide>
-          <ion-slide>
-          <ion-tab-button tab="speakers"  (click)="att('Acessórios')">
-            <img src="../../assets/img/cap.png" width="100px" height="100px" />
+          </ion-tab-button>
+        </ion-slide>
+        <ion-slide>
+          <ion-tab-button tab="speakers" (click)="att('Acessórios')">
+            <img src="../../assets/img/cap.png" class="cat" />
             <ion-label>Bonés</ion-label>
           </ion-tab-button>
         </ion-slide>
         <ion-slide>
           <ion-tab-button tab="speakers" (click)="att('Camisas')">
-            <img src="../../assets/img/cotton-polo-shirt.png" width="100px" height="100px" />
+            <img src="../../assets/img/cotton-polo-shirt.png" class="cat" />
             <ion-label>Camisas</ion-label>
           </ion-tab-button>
         </ion-slide>
         <ion-slide>
           <ion-tab-button tab="speakers" (click)="att('Calças')">
-            <img src="../../assets/img/chinos-pants.png" width="100px" height="100px" />
+            <img src="../../assets/img/chinos-pants.png"  class="cat"/>
             <ion-label>Calças</ion-label>
           </ion-tab-button>
         </ion-slide>
-          </ion-slides>
+      </ion-slides>
     </ion-row>
   </ion-grid>
+
+  <ion-card class="coin">
+    <img src="../../assets/img/coins.png" class="pts">
+    <ion-card-title>Card Subtitle</ion-card-title>
+  </ion-card>
+  <ion-card class="coin">
+    <img src="../../assets/img/localization.png">
+  </ion-card>
 
   <ion-card *ngFor="let produto of listaDeProdutos">
     <ion-card-header>

@@ -28,6 +28,7 @@ ion-card {
 }
 #market {
     float: right;
+    height: 60px;
 }
 
 .icon {
@@ -54,4 +55,19 @@ ion-card-subtitle{
     font-weight: bold;
     font-size: 15px;
 }
+.cat{
+    width: 80px;
+    height: 80px;
+}
 
+.coin{
+    margin: 5px;
+    width: 190px;
+    height: 190px;
+    display: inline-block;
+}
+.pts{
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
