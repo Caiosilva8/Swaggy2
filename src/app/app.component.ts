@@ -36,6 +36,10 @@ export class AppComponent {
       title: 'Visualizar Perfil',
       url: '/perfil',
       icon: 'contact'
+    },{
+      title: 'Trocar Pontos',
+      url: '/loja-pontos',
+      icon: 'sync'
     }
   ];
 

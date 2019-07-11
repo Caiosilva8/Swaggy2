@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>loja-pontos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-button slot="start">
+      Start Icon
+      <ion-icon name="home" slot="end"></ion-icon>
+    </ion-button>
+    <ion-label>Buttons with Icons</ion-label>
+    <ion-button slot="end">
+      <ion-icon name="star" slot="end"></ion-icon>
+      End Icon
+    </ion-button>
+  </ion-item>
+  <ion-item (click)="buttonClick()">
+    <ion-label>
+      Button Item
+    </ion-label>
+  </ion-item>
+</ion-content>

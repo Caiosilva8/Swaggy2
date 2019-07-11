@@ -27,7 +27,9 @@ const routes: Routes = [
   { path: 'produto-view', loadChildren: './produto-view/produto-view.module#ProdutoViewPageModule' },
   { path: 'categoria', loadChildren: './categoria/categoria.module#CategoriaPageModule' },
   { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilPageModule' },
-  { path: 'perfil-view', loadChildren: './perfil-view/perfil-view.module#PerfilViewPageModule' }
+  { path: 'perfil-view', loadChildren: './perfil-view/perfil-view.module#PerfilViewPageModule' },
+  { path: 'loja-pontos', loadChildren: './loja-pontos/loja-pontos.module#LojaPontosPageModule' },
+  { path: 'finalizar-compra', loadChildren: './finalizar-compra/finalizar-compra.module#FinalizarCompraPageModule' }
 
 
 

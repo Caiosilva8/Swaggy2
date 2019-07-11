@@ -1,0 +1,24 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Finalize sua compra</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-title>Complete seu Cadastro</ion-card-title>
+  
+  <form [formGroup]="formGroup">
+      <ion-list>
+          <ion-label class="title">Complete seu cadastro</ion-label>
+          <ion-item>
+              <ion-label floating>Nome</ion-label>
+              <ion-input formControlName="nomeProduto" type="text"></ion-input>
+          </ion-item>
+      </ion-list>
+  </form>
+
+</ion-card>
+</ion-content>

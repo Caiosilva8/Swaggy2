@@ -46,4 +46,9 @@ export class CarrinhoPage implements OnInit {
   index(){
     this.router.navigate(['index']);
   }
+
+  finalizar(){
+    this.router.navigate(['finalizar-compra']);
+  }
+  
 }
