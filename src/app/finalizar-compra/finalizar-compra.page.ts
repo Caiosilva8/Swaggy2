@@ -48,7 +48,8 @@ export class FinalizarCompraPage implements OnInit {
       endereco : [],
       numero : [],
       complemento : [],
-      pontoR : []
+      pontoR : [],
+      user : [this.idUsuario]
     })
   }
 
