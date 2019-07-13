@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-title>Finalize sua compra</ion-title>
@@ -9,16 +8,49 @@
 <ion-content>
   <ion-card>
     <ion-card-title>Complete seu Cadastro</ion-card-title>
-  
-  <form [formGroup]="formGroup">
-      <ion-list>
-          <ion-label class="title">Complete seu cadastro</ion-label>
-          <ion-item>
-              <ion-label floating>Nome</ion-label>
-              <ion-input formControlName="nomeProduto" type="text"></ion-input>
-          </ion-item>
-      </ion-list>
-  </form>
 
-</ion-card>
+    <form [formGroup]="formGroup">
+      <ion-list>
+        <ion-label class="title">Complete seu cadastro</ion-label>
+        <ion-item>
+          <ion-label floating>CEP :</ion-label>
+          <ion-input formControlName="cep" type="text" placeholder="xxxxx-xxx" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>CPF :</ion-label>
+          <ion-input formControlName="cpf" type="number" placeholder="xxx.xxx.xxx-xx"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Identidade :</ion-label>
+          <ion-input formControlName="identidade" type="number" placeholder="xx.xxx.xxx-xx"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Celular :</ion-label>
+          <ion-input formControlName="celular" type="text" placeholder="(xx) xxxxx-xxxx"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Bairro :</ion-label>
+          <ion-input formControlName="bairro" type="text" placeholder="Cosmos"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Endereço :</ion-label>
+          <ion-input formControlName="endereço" type="text" placeholder="Rua xx"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Número :</ion-label>
+          <ion-input formControlName="numero" type="text" placeholder="xxx"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Complemento :</ion-label>
+          <ion-input formControlName="complemento" type="text" placeholder="Aprt, Bloco, Casa..."></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Ponto de referência : </ion-label>
+          <ion-input formControlName="pontoR" type="text" placeholder="Ponto Referência"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button color="dark" fill="outline" (click)="atualizar()">Finalizar</ion-button>
+    </form>
+
+  </ion-card>
 </ion-content>
